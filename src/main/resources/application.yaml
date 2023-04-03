@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/test_db?useSSL=false
+    url: jdbc:mysql://localhost:3306/test_db1?useSSL=false
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,10 +17,10 @@ spring:
           mode: always
           continue-on-error: true
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui-custom.html
-
 jwt:
-  secret: security_bank
+  secret: security_calorie_counter
+
+
+
+
 

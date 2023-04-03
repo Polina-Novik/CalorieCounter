@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
-@Entity
 @Data
+@Entity
 @ToString
-@Table(name = "activities")
-public class Activity {
+@Table(name = "foods")
+public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,5 +17,5 @@ public class Activity {
     private String name;
 
     @Column(nullable = false)
-    private double caloriesBurnedPerMinute;
+    private double calories;
 }
