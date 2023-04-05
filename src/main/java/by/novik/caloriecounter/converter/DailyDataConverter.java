@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class DailyDataConverter {
     public DailyDataResponse convert(DailyData dailyData) {
         DailyDataResponse dailyDataResponse = new DailyDataResponse();
+        dailyDataResponse.setId(dailyData.getId());
         dailyDataResponse.setDate(dailyData.getDate());
         dailyDataResponse.setConsumedCalories(dailyData.getConsumedCalories());
         dailyDataResponse.setFoods(dailyData.getFoods());

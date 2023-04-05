@@ -35,7 +35,7 @@ public class DailyDataController {
 
     private final CalculationService calculationService;
 
-    @PostMapping("add_daily_data")
+    @PostMapping
     @Operation(summary = "Create daily data", description = "this method creates new daily data",
             responses = {@ApiResponse(responseCode = "200",
                     description = "new daily data",
@@ -65,7 +65,7 @@ public class DailyDataController {
     }
 
 
-    @PutMapping("daily_data/{dailyDataId}/add_food/{foodId}")
+    @PostMapping("{dailyDataId}/food/{foodId}")
     @Operation(summary = "Add food", description = "this method adds food to daily data",
             responses = {@ApiResponse(responseCode = "200",
                     description = "updated daily data",
@@ -97,7 +97,7 @@ public class DailyDataController {
         return dailyDataService.addFoodToDailyData(login, dailyDataId, foodId, grams);
     }
 
-    @PutMapping("daily_data/{dailyDataId}/delete_food/{foodIndex}")
+    @DeleteMapping("{dailyDataId}/delete/{foodIndex}")
     @Operation(summary = "Delete food", description = "this method deletes food from daily data",
             responses = {@ApiResponse(responseCode = "200",
                     description = "updated daily data",
@@ -129,7 +129,7 @@ public class DailyDataController {
         return dailyDataService.deleteFoodFromDailyData(login, dailyDataId, foodIndex);
     }
 
-    @PutMapping("daily_data/{dailyDataId}/add_activity/{activityId}")
+    @PostMapping("{dailyDataId}/activity/{activityId}")
     @Operation(summary = "Add activity", description = "this method adds activity to daily data",
             responses = {@ApiResponse(responseCode = "200",
                     description = "updated daily data",
@@ -163,7 +163,7 @@ public class DailyDataController {
         return dailyDataService.addActivityToDailyData(login, dailyDataId, activityId, minutes);
     }
 
-    @PutMapping("daily_data/{dailyDataId}/delete_activity/{activityIndex}")
+    @DeleteMapping("{dailyDataId}/activity/{activityIndex}")
     @Operation(summary = "Delete activity", description = "this method deletes activity from daily data",
             responses = {@ApiResponse(responseCode = "200",
                     description = "updated daily data",
@@ -197,7 +197,7 @@ public class DailyDataController {
     }
 
 
-    @GetMapping("daily_data/{id}")
+    @GetMapping("{id}")
     @Operation(summary = "Find daily data", description = "this method finds daily data by daily data id",
             responses = {@ApiResponse(responseCode = "200",
                     description = "daily data",
@@ -225,7 +225,7 @@ public class DailyDataController {
                 .getAttribute("token")), id);
     }
 
-    @GetMapping("data")
+    @GetMapping
     @Operation(summary = "Find all daily data", description = "this method finds all daily for user",
             responses = {@ApiResponse(responseCode = "200",
                     description = "List of daily data",
@@ -251,7 +251,7 @@ public class DailyDataController {
                 session.getAttribute("token")));
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     @Operation(summary = "Delete daily data", description = "Delete daily data by id",
             responses = {@ApiResponse(responseCode = "204", description = "Daily data successfully deleted")})
     public void delete(@Parameter(name = "id", description = "id of daily data", required = true)
@@ -259,7 +259,7 @@ public class DailyDataController {
         dailyDataService.deleteById(id);
     }
 
-    @PutMapping("update_weight/{id}")
+    @PutMapping("{id}")
     @Operation(summary = "Update weight",
             description = "this method updates weight of user in daily data and profile",
             responses = {@ApiResponse(responseCode = "200",

@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class DailyDataResponse {
+    private Long id;
 
     private LocalDate date;
 

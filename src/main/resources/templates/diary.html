@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Calorie Counter</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="jumbotron text-center mb-3">
+    <h1 class="display-4">Calorie Counter</h1>
+</div>
+
+<div class="container">
+    <h2 class="text-center mb-3">Your statistics of consumed and burned calories</h2>
+
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4 class="card-title">Your daily calorie needs</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" th:text="${dailyCalorieNeeds}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Consumed Calories</th>
+
+            <th>Burned Calories</th>
+            <th>Weight</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dailyDataResponse : ${dailyDataResponses}">
+            <td th:text="${dailyDataResponse.date}"></td>
+            <td th:text="${dailyDataResponse.consumedCalories}"></td>
+
+            <td th:text="${dailyDataResponse.burnedCalories}"></td>
+            <td th:text="${dailyDataResponse.weight}"></td>
+            <td>
+                <a th:href="@{'/daily_statistics/' + ${dailyDataResponse.id}}">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,10 +1,10 @@
 package by.novik.caloriecounter.service;
 
+import by.novik.caloriecounter.converter.UserConverter;
 import by.novik.caloriecounter.dto.AuthRequest;
 import by.novik.caloriecounter.dto.ProfileResponse;
 import by.novik.caloriecounter.dto.RegisterAuthRequest;
 import by.novik.caloriecounter.entity.User;
-import by.novik.caloriecounter.repository.RoleRepository;
 import by.novik.caloriecounter.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,26 +16,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    private final RoleRepository roleRepository;
-
+    private final UserConverter converter;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public void save(RegisterAuthRequest request) {
-        User user = new User();
-        user.setLogin(request.getLogin());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setWeight(request.getWeight());
-        user.setHeight(request.getHeight());
-        user.setAge(request.getAge());
-        user.setGender(request.getGender());
-        user.setActivityLevel(request.getActivityLevel());
-        user.setRole(roleRepository.findById(1L).orElseThrow());
+        User user = converter.convert(request);
         userRepository.save(user);
     }
 
     public Optional<User> findByLogin(String login) {
         return userRepository.findByLogin(login);
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     public User getTokenForUserIfExists(AuthRequest authRequest) {
@@ -51,15 +45,7 @@ public class UserService {
     }
 
     public ProfileResponse showPersonalInformation(String login) {
-        User user = findByLogin(login).orElseThrow();
-        ProfileResponse profileResponse = new ProfileResponse();
-        profileResponse.setLogin(login);
-        profileResponse.setHeight(user.getHeight());
-        profileResponse.setWeight(user.getWeight());
-        profileResponse.setAge(user.getAge());
-        profileResponse.setGender(user.getGender());
-        profileResponse.setActivityLevel(user.getActivityLevel());
-        return profileResponse;
+        return converter.convert(findByLogin(login).orElseThrow());
     }
 
     public ProfileResponse editProfile(String login, int height, double weight, int age, String gender, String activityLevel) {

@@ -49,14 +49,7 @@ public class DailyDataService {
             LocalDate currentDate = LocalDate.now();
             if (dailyDataRepository.findByDateAndUserId(date, user.getId()).isEmpty()
                     && date.compareTo(currentDate) <= 0) {
-                DailyData dailyData = new DailyData();
-                dailyData.setUser(user);
-                dailyData.setDate(date);
-                dailyData.setConsumedCalories(0);
-                dailyData.setBurnedCalories(0);
-                dailyData.setWeight(user.getWeight());
-                dailyData.setFoods(null);
-                dailyData.setActivities(null);
+                DailyData dailyData = new DailyData(user, date, 0, null, null, 0, user.getWeight());
                 dailyDataRepository.save(dailyData);
                 return converter.convert(dailyData);
             } else {

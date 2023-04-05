@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Counter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Calorie Counter</a>
+    </nav>
+</header>
+<div class="container mt-5">
+    <h2>Your calorie statistics for: <span th:text="${dailyDataResponse.date}"></span></h2>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Products</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="food : ${dailyDataResponse.foods}">
+                    <td th:text="${food}"></td>
+                </tr>
+                <tr>
+                    <td><b>Consumed calories:</b> <span th:text="${dailyDataResponse.consumedCalories}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Activities</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="activity : ${dailyDataResponse.activities}">
+                    <td th:text="${activity}"></td>
+                </tr>
+                <tr>
+                    <td><b>Burned calories:</b> <span th:text="${dailyDataResponse.burnedCalories}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="mt-5">
+        <p><b>Weight:</b> <span th:text="${dailyDataResponse.weight}"></span></p>
+    </div>
+</div>
+</body>
+</html>

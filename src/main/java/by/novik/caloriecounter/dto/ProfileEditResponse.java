@@ -8,9 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class ProfileResponse {
-
-    private String login;
+public class ProfileEditResponse {
 
     @Min(value = 100, message = "Height should be greater than 100")
     @Max(value = 300, message = "Height should be less than 300")

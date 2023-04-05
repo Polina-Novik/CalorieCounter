@@ -26,7 +26,7 @@ public class ActivityController {
     private final ActivityService activityService;
 
 
-    @GetMapping("list")
+    @GetMapping
     @Operation(summary = "Find all activities", description = "this method returns all activities",
             responses = @ApiResponse(responseCode = "200",
                     description = "List of activities",
@@ -36,7 +36,7 @@ public class ActivityController {
         return activityService.findAll();
     }
 
-    @GetMapping("find/{id}")
+    @GetMapping("{id}")
     @Operation(summary = "Find activity by id", description = "this method returns activity if present",
             responses = {@ApiResponse(responseCode = "200",
                     description = "needed activity",
@@ -57,7 +57,7 @@ public class ActivityController {
     }
 
 
-    @PostMapping("add")
+    @PostMapping
     @Operation(summary = "Create activity", description = "This method creates a new activity.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "List with new activity",
@@ -72,7 +72,7 @@ public class ActivityController {
         return activityService.findAll();
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     @Operation(summary = "Delete activity", description = "this method deletes activity if present",
             responses = {@ApiResponse(responseCode = "200",
                     description = "list with deleted activity",
@@ -84,7 +84,7 @@ public class ActivityController {
         return activityService.findAll();
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("{id}")
     @Operation(summary = "Update activity", description = "this method updates activity if present",
             responses = {@ApiResponse(responseCode = "200",
                     description = "list with updated activity",

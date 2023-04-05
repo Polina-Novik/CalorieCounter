@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "profile controller", description = "controller for viewing and editing profile")
@@ -49,7 +50,7 @@ public class ProfileController {
     }
 
 
-    @PutMapping("edit")
+    @PutMapping
     @Operation(summary = "Update profile", description = "this method updates personal information",
             responses = {@ApiResponse(responseCode = "200",
                     description = "updated personal information",

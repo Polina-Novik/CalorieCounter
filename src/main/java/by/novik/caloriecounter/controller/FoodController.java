@@ -26,7 +26,7 @@ public class FoodController {
 
     private final FoodService foodService;
 
-    @GetMapping("list")
+    @GetMapping
     @Operation(summary = "Find all foods", description = "this method returns all products",
             responses = @ApiResponse(responseCode = "200",
                     description = "List of foods",
@@ -36,7 +36,7 @@ public class FoodController {
         return foodService.findAll();
     }
 
-    @GetMapping("find/{id}")
+    @GetMapping("{id}")
     @Operation(summary = "Find food by id", description = "this method returns food if present",
             responses = {@ApiResponse(responseCode = "200",
                     description = "needed food",
@@ -56,7 +56,7 @@ public class FoodController {
         return foodService.findById(id);
     }
 
-    @PostMapping("add")
+    @PostMapping
     @Operation(summary = "Create food", description = "this method creates new food",
             responses = {@ApiResponse(responseCode = "200",
                     description = "list with new food",
@@ -69,7 +69,7 @@ public class FoodController {
         return foodService.findAll();
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     @Operation(summary = "Delete food", description = "this method deletes food if present",
             responses = {@ApiResponse(responseCode = "200",
                     description = "list with deleted food",
@@ -81,7 +81,7 @@ public class FoodController {
         return foodService.findAll();
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("{id}")
     @Operation(summary = "Update food", description = "this method updates food if present",
             responses = {@ApiResponse(responseCode = "200",
                     description = "list with updated food",

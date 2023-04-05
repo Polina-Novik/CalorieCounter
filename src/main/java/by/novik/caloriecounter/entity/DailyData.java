@@ -2,6 +2,7 @@ package by.novik.caloriecounter.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @ToString
 @Data
+@RequiredArgsConstructor
 @Table(name = "daily_data")
 public class DailyData {
     @Id
@@ -37,4 +39,15 @@ public class DailyData {
     private double burnedCalories;
 
     private double weight;
+
+    public DailyData(User user, LocalDate date, double consumedCalories, List<String> foods,
+                     List<String> activities, double burnedCalories, double weight) {
+        this.user = user;
+        this.date = date;
+        this.consumedCalories = consumedCalories;
+        this.foods = foods;
+        this.activities = activities;
+        this.burnedCalories = burnedCalories;
+        this.weight = weight;
+    }
 }
